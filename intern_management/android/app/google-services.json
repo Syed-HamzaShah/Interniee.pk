@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "464250437973",
+    "project_id": "interntasktracker-d127c",
+    "storage_bucket": "interntasktracker-d127c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:464250437973:android:efe56389b9d9f46a946fdc",
+        "android_client_info": {
+          "package_name": "com.example.task_tracker_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPHrAxGw9mad_mgIzKJCBu_uCH24VEYjA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

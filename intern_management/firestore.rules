@@ -1,0 +1,149 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    // Users collection rules
+    match /users/{userId} {
+      // Users can read their own data, anyone authenticated can read all users (for role checking)
+      allow read: if isAuthenticated();
+      
+      // Users can update their own profile
+      allow update: if isAuthenticated() && isOwner(userId);
+      
+      // Anyone authenticated can create users (for registration)
+      allow create: if isAuthenticated();
+      
+      // Only the user themselves can delete their account
+      allow delete: if isAuthenticated() && isOwner(userId);
+    }
+    
+    // Tasks collection rules
+    match /tasks/{taskId} {
+      // Allow all authenticated users to read tasks (temporarily for debugging)
+      allow read: if isAuthenticated();
+      
+      // Anyone authenticated can create tasks
+      allow create: if isAuthenticated();
+      
+      // Users can update tasks assigned to them (status, notes), or if they assigned the task
+      allow update: if isAuthenticated() && 
+                       (resource.data.assignedTo == request.auth.uid || 
+                        resource.data.assignedBy == request.auth.uid);
+      
+      // Only the person who assigned the task can delete it
+      allow delete: if isAuthenticated() && 
+                       resource.data.assignedBy == request.auth.uid;
+    }
+    
+    // Feedbacks collection rules
+    match /feedbacks/{feedbackId} {
+      // Users can read their own feedbacks, or feedbacks about them
+      allow read: if isAuthenticated() && 
+                     (resource.data.userId == request.auth.uid || 
+                      resource.data.targetUserId == request.auth.uid);
+      
+      // Users can create feedbacks
+      allow create: if isAuthenticated();
+      
+      // Users can update their own feedbacks
+      allow update: if isAuthenticated() && 
+                       resource.data.userId == request.auth.uid;
+      
+      // Users can delete their own feedbacks
+      allow delete: if isAuthenticated() && 
+                       resource.data.userId == request.auth.uid;
+    }
+    
+    // Reports collection rules (for analytics and reports)
+    match /reports/{reportId} {
+      // Anyone authenticated can read reports
+      allow read: if isAuthenticated();
+      
+      // Anyone authenticated can create reports
+      allow create: if isAuthenticated();
+      
+      // Anyone authenticated can update reports
+      allow update: if isAuthenticated();
+      
+      // Anyone authenticated can delete reports
+      allow delete: if isAuthenticated();
+    }
+    
+    // Performance tracking collection
+    match /performance/{performanceId} {
+      // Users can read their own performance data
+      allow read: if isAuthenticated() && 
+                     resource.data.userId == request.auth.uid;
+      
+      // Anyone authenticated can create performance data
+      allow create: if isAuthenticated();
+      
+      // Anyone authenticated can update performance data
+      allow update: if isAuthenticated();
+      
+      // Anyone authenticated can delete performance data
+      allow delete: if isAuthenticated();
+    }
+    
+    // Notifications collection
+    match /notifications/{notificationId} {
+      // Users can read their own notifications
+      allow read: if isAuthenticated() && 
+                     resource.data.userId == request.auth.uid;
+      
+      // Anyone authenticated can create notifications
+      allow create: if isAuthenticated();
+      
+      // Users can update their own notifications (mark as read)
+      allow update: if isAuthenticated() && 
+                       resource.data.userId == request.auth.uid;
+      
+      // Users can delete their own notifications
+      allow delete: if isAuthenticated() && 
+                       resource.data.userId == request.auth.uid;
+    }
+    
+    // Activity logs collection
+    match /activity_logs/{logId} {
+      // Anyone authenticated can read activity logs
+      allow read: if isAuthenticated();
+      
+      // Anyone authenticated can create activity logs
+      allow create: if isAuthenticated();
+      
+      // Anyone authenticated can update activity logs
+      allow update: if isAuthenticated();
+      
+      // Anyone authenticated can delete activity logs
+      allow delete: if isAuthenticated();
+    }
+    
+    // System settings collection
+    match /settings/{settingId} {
+      // Anyone authenticated can read settings
+      allow read: if isAuthenticated();
+      
+      // Anyone authenticated can create settings
+      allow create: if isAuthenticated();
+      
+      // Anyone authenticated can update settings
+      allow update: if isAuthenticated();
+      
+      // Anyone authenticated can delete settings
+      allow delete: if isAuthenticated();
+    }
+    
+    // Default deny rule for any other collections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

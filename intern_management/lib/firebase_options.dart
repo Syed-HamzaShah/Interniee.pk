@@ -1,0 +1,77 @@
+import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
+import 'package:flutter/foundation.dart'
+    show defaultTargetPlatform, kIsWeb, TargetPlatform;
+
+class DefaultFirebaseOptions {
+  static FirebaseOptions get currentPlatform {
+    if (kIsWeb) {
+      return web;
+    }
+    switch (defaultTargetPlatform) {
+      case TargetPlatform.android:
+        return android;
+      case TargetPlatform.iOS:
+        return ios;
+      case TargetPlatform.macOS:
+        return macos;
+      case TargetPlatform.windows:
+        return windows;
+      case TargetPlatform.linux:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for linux - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
+      default:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions are not supported for this platform.',
+        );
+    }
+  }
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyAynfaZNmwdEvYc6VQWBOYXEhAHymFfuxw',
+    appId: '1:464250437973:web:43553277f09bc248946fdc',
+    messagingSenderId: '464250437973',
+    projectId: 'interntasktracker-d127c',
+    authDomain: 'interntasktracker-d127c.firebaseapp.com',
+    storageBucket: 'interntasktracker-d127c.firebasestorage.app',
+    measurementId: 'G-HWLNKDYT1Y',
+  );
+
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: 'AIzaSyDPHrAxGw9mad_mgIzKJCBu_uCH24VEYjA',
+    appId: '1:464250437973:android:efe56389b9d9f46a946fdc',
+    messagingSenderId: '464250437973',
+    projectId: 'interntasktracker-d127c',
+    storageBucket: 'interntasktracker-d127c.firebasestorage.app',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyBoaD2_Mbe8X5UxGg_14GRbvszNYz-AMkg',
+    appId: '1:464250437973:ios:dc4c3111f486503f946fdc',
+    messagingSenderId: '464250437973',
+    projectId: 'interntasktracker-d127c',
+    storageBucket: 'interntasktracker-d127c.firebasestorage.app',
+    iosBundleId: 'com.example.taskTrackerApp',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyBoaD2_Mbe8X5UxGg_14GRbvszNYz-AMkg',
+    appId: '1:464250437973:ios:dc4c3111f486503f946fdc',
+    messagingSenderId: '464250437973',
+    projectId: 'interntasktracker-d127c',
+    storageBucket: 'interntasktracker-d127c.firebasestorage.app',
+    iosBundleId: 'com.example.taskTrackerApp',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyAynfaZNmwdEvYc6VQWBOYXEhAHymFfuxw',
+    appId: '1:464250437973:web:b06041472d8fa994946fdc',
+    messagingSenderId: '464250437973',
+    projectId: 'interntasktracker-d127c',
+    authDomain: 'interntasktracker-d127c.firebaseapp.com',
+    storageBucket: 'interntasktracker-d127c.firebasestorage.app',
+    measurementId: 'G-26HJ26SPBW',
+  );
+
+}
