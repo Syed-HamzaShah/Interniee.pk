@@ -8,12 +8,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:task_tracker_app/main.dart';
+import 'package:feedback_review_app/main.dart';
 
 void main() {
-  testWidgets('Task Tracker app smoke test', (WidgetTester tester) async {
+  testWidgets('Feedback Review app smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const TaskTrackerApp());
+    await tester.pumpWidget(const FeedbackReviewApp());
 
     // Verify that the app loads without crashing
     expect(find.byType(MaterialApp), findsOneWidget);

@@ -25,11 +25,11 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-  runApp(const FeedbackReviewApp());
+  runApp(const TaskTrackerApp());
 }
 
-class FeedbackReviewApp extends StatelessWidget {
-  const FeedbackReviewApp({super.key});
+class TaskTrackerApp extends StatelessWidget {
+  const TaskTrackerApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class FeedbackReviewApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AdminProvider()),
       ],
       child: MaterialApp(
-        title: 'Feedback & Review App',
+        title: 'Task Tracker App',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.darkTheme,
         home: const AppRouter(),

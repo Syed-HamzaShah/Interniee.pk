@@ -26,11 +26,11 @@ void main() async {
   // Initialize Firebase Messaging
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-  runApp(const InternTaskTrackerApp());
+  runApp(const LearningManagementApp());
 }
 
-class InternTaskTrackerApp extends StatelessWidget {
-  const InternTaskTrackerApp({super.key});
+class LearningManagementApp extends StatelessWidget {
+  const LearningManagementApp({super.key});
 
   @override
   Widget build(BuildContext context) {

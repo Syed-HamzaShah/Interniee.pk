@@ -1,4 +1,4 @@
-package com.example.feedback_review_app
+package com.example.intern_management_system
 
 import io.flutter.embedding.android.FlutterActivity
 

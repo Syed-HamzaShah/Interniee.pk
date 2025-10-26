@@ -8,12 +8,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:intern_management_system/main.dart';
+import 'package:learning_management_system/main.dart';
 
 void main() {
-  testWidgets('Task Tracker app smoke test', (WidgetTester tester) async {
+  testWidgets('Learning Management app smoke test', (
+    WidgetTester tester,
+  ) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const FeedbackReviewApp());
+    await tester.pumpWidget(const LearningManagementApp());
 
     // Verify that the app loads without crashing
     expect(find.byType(MaterialApp), findsOneWidget);

@@ -1,4 +1,4 @@
-name: intern_management_system
+name: learning_management_system
 description: "A comprehensive Intern Management System (IMS) for Internee.pk to manage interns, track assigned tasks, and monitor progress with analytics dashboard."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
